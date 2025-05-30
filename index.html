@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vibe Check Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #d8b4fe, #fbcfe8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #7c3aed;
+      margin-bottom: 20px;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #7c3aed;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #6b21a8;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>✨ Vibe Check ✨</h1>
+    <form id="quizForm">
+      <select name="q1">
+        <option value="0">Chill 😌</option>
+        <option value="2">Balanced 😎</option>
+        <option value="4">Chaotic 🔥</option>
+      </select>
+      <select name="q2">
+        <option value="0">Blue 🌊</option>
+        <option value="2">Pink 🌸</option>
+        <option value="4">Neon Green 💚</option>
+      </select>
+      <select name="q3">
+        <option value="0">Morning ☀️</option>
+        <option value="2">Evening 🌇</option>
+        <option value="4">Midnight 🌙</option>
+      </select>
+      <button type="submit">Check Vibe</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selects = [...e.target.elements].filter(el => el.tagName === 'SELECT');
+      const score = selects.reduce((total, el) => total + Number(el.value), 0);
+      let vibe = "";
+      if (score < 5) vibe = "You're chill 🧊";
+      else if (score < 10) vibe = "You're vibey 😎";
+      else vibe = "You're chaotic good 🔥";
+      const result = document.getElementById('result');
+      result.textContent = vibe;
+      result.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
